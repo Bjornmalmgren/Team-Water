@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://hkqkrto3a14s"]
+
+[ext_resource type="Script" path="res://game_manger.cs" id="1_27vi6"]
+[ext_resource type="PackedScene" uid="uid://bc11ulb8i1rva" path="res://weapon_pickup.tscn" id="2_pqicl"]
+
+[node name="Game Manger" type="Node3D"]
+script = ExtResource("1_27vi6")
+
+[node name="Pickup" parent="." instance=ExtResource("2_pqicl")]
+
+[connection signal="body_entered" from="Pickup" to="." method="_on_pickup_area_entered"]
