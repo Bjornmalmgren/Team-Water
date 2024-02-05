@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://kghjhcjsredw"]
 
 [ext_resource type="Script" path="res://player.cs" id="1_35q6d"]
-[ext_resource type="PackedScene" uid="uid://bd7ihuvvuvxg0" path="res://barrel.glb" id="1_efql4"]
+[ext_resource type="PackedScene" uid="uid://b2ebgkuskksax" path="res://chest.glb" id="2_ahphu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_umwic"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_35q6d")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
@@ -13,4 +13,4 @@ shape = SubResource("BoxShape3D_umwic")
 
 [node name="Node3D2" type="Node3D" parent="."]
 
-[node name="barrel2" parent="Node3D2" instance=ExtResource("1_efql4")]
+[node name="chest2" parent="Node3D2" instance=ExtResource("2_ahphu")]
