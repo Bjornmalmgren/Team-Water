@@ -40,4 +40,9 @@ public partial class player : CharacterBody3D
         this.id = id;
     }
 
+    public int GetId()
+    {
+        return id;
+    }
+
 }
