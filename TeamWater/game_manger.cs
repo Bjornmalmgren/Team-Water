@@ -33,10 +33,7 @@ public partial class game_manger : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-        if(GetTree().CurrentScene.Name == "main")
-        {
             Spawn_Character();
-        }
 	}
 	public void _on_pickup_area_entered(player body)
 	{

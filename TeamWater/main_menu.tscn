@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://hkqkrto3a14s"]
+[gd_scene load_steps=5 format=3 uid="uid://hkqkrto3a14s"]
 
 [ext_resource type="Script" path="res://game_manger.cs" id="1_27vi6"]
+[ext_resource type="PackedScene" uid="uid://kghjhcjsredw" path="res://player.tscn" id="2_lo5fx"]
 [ext_resource type="PackedScene" uid="uid://bc11ulb8i1rva" path="res://weapon_pickup.tscn" id="2_pqicl"]
+[ext_resource type="PackedScene" uid="uid://bbcxlcn83kr06" path="res://main.tscn" id="3_kdh7r"]
 
 [node name="Game Manger" type="Node3D"]
 script = ExtResource("1_27vi6")
+playerScene = ExtResource("2_lo5fx")
 
 [node name="Pickup" parent="." instance=ExtResource("2_pqicl")]
+visible = false
+
+[node name="Main" parent="." instance=ExtResource("3_kdh7r")]
 
 [connection signal="body_entered" from="Pickup" to="." method="_on_pickup_area_entered"]
