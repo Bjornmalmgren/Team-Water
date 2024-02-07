@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://4l2y1momh1ow"]
+[gd_scene load_steps=9 format=3 uid="uid://4l2y1momh1ow"]
 
 [ext_resource type="Script" path="res://Player_turrets.cs" id="1_7pfck"]
-[ext_resource type="ArrayMesh" uid="uid://doikd3h8t16du" path="res://models/kenney_space-kit/Models/OBJ format/turret_double.obj" id="2_5ucmh"]
-[ext_resource type="PackedScene" uid="uid://gh11htov06ys" path="res://bullet.tscn" id="2_r8eqy"]
-[ext_resource type="PackedScene" uid="uid://3qx0ckhro2lk" path="res://models/ultimate_space_kit-glb/Spaceship.glb" id="2_w2k6h"]
-[ext_resource type="PackedScene" uid="uid://bc8yku3hhhk7a" path="res://Gun.tscn" id="4_333rp"]
+[ext_resource type="PackedScene" path="res://bullet.tscn" id="2_r8eqy"]
+[ext_resource type="PackedScene" path="res://Models/Spaceship.glb" id="2_w2k6h"]
+[ext_resource type="PackedScene" path="res://Gun.tscn" id="4_333rp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wku5r"]
 
@@ -59,12 +58,10 @@ shape = SubResource("SphereShape3D_wku5r")
 
 [node name="TurretDouble" type="MeshInstance3D" parent="Pivot"]
 transform = Transform3D(0.93747, 0, 0.348065, 0, 1, 0, -0.348065, 0, 0.93747, 2.54876, 0.904037, -0.0173731)
-mesh = ExtResource("2_5ucmh")
 skeleton = NodePath("../..")
 
 [node name="TurretDouble2" type="MeshInstance3D" parent="Pivot"]
 transform = Transform3D(0.903245, 0, -0.429124, 0, 1, 0, 0.429124, 0, 0.903245, -2.53629, 0.904142, 0.00943184)
-mesh = ExtResource("2_5ucmh")
 skeleton = NodePath("../..")
 
 [node name="Root Scene" parent="Pivot" instance=ExtResource("2_w2k6h")]
