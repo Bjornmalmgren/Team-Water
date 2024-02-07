@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://4l2y1momh1ow"]
+
+[ext_resource type="Script" path="res://Player_turrets.cs" id="1_7pfck"]
+[ext_resource type="ArrayMesh" uid="uid://doikd3h8t16du" path="res://models/kenney_space-kit/Models/OBJ format/turret_double.obj" id="2_5ucmh"]
+[ext_resource type="PackedScene" uid="uid://gh11htov06ys" path="res://bullet.tscn" id="2_r8eqy"]
+[ext_resource type="PackedScene" uid="uid://3qx0ckhro2lk" path="res://models/ultimate_space_kit-glb/Spaceship.glb" id="2_w2k6h"]
+[ext_resource type="PackedScene" uid="uid://bc8yku3hhhk7a" path="res://Gun.tscn" id="4_333rp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wku5r"]
+
+[sub_resource type="Animation" id="Animation_3xd1t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-5.49269e-07, 0, 6.2829)]
+}
+
+[sub_resource type="Animation" id="Animation_c6swy"]
+resource_name = "shoot"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-5.49269e-07, 0, 6.2829), Vector3(-4.59089e-07, 0, 5.25137), Vector3(-3.59126e-07, 0, 4.10792)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lkgb8"]
+_data = {
+"RESET": SubResource("Animation_3xd1t"),
+"shoot_animate": SubResource("Animation_c6swy")
+}
+
+[node name="Player_Turrets" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00260115, 0, 0.0215044)
+script = ExtResource("1_7pfck")
+bulletScene = ExtResource("2_r8eqy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69226, 0)
+shape = SubResource("SphereShape3D_wku5r")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="TurretDouble" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(0.93747, 0, 0.348065, 0, 1, 0, -0.348065, 0, 0.93747, 2.54876, 0.904037, -0.0173731)
+mesh = ExtResource("2_5ucmh")
+skeleton = NodePath("../..")
+
+[node name="TurretDouble2" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(0.903245, 0, -0.429124, 0, 1, 0, 0.429124, 0, 0.903245, -2.53629, 0.904142, 0.00943184)
+mesh = ExtResource("2_5ucmh")
+skeleton = NodePath("../..")
+
+[node name="Root Scene" parent="Pivot" instance=ExtResource("2_w2k6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.411987, 0)
+
+[node name="Gun" parent="Pivot" instance=ExtResource("4_333rp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.49269e-07, 0, 6.2829)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_lkgb8")
+}
+
+[node name="TargetPoint" type="Node3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.94392)
