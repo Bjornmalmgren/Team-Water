@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cujyg8nw1q067"
+path="res://.godot/imported/corridor_windowClosed.obj-122c02fd067677da72c9788f15655cd8.mesh"
+
+[deps]
+
+files=["res://.godot/imported/corridor_windowClosed.obj-122c02fd067677da72c9788f15655cd8.mesh"]
+
+source_file="res://Models/kenney_space-kit/Models/OBJ format/corridor_windowClosed.obj"
+dest_files=["res://.godot/imported/corridor_windowClosed.obj-122c02fd067677da72c9788f15655cd8.mesh", "res://.godot/imported/corridor_windowClosed.obj-122c02fd067677da72c9788f15655cd8.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

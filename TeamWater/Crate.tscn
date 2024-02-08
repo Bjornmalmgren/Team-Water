@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://bolsti2hh0pom"]
+
+[ext_resource type="PackedScene" uid="uid://unmr1ed5ofh6" path="res://Models/ultimate_space_kit-glb/Pickup Crate.glb" id="1_c6p22"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_54wgw"]
+
+[sub_resource type="Animation" id="Animation_glbtq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kj7qr"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.42799, -2.98453e-08, 0.488954), Vector3(0.415335, 0.88003, 1.73781), Vector3(0.0061282, 1.27659, 2.5465), Vector3(-0.896528, 0.866884, -1.96789), Vector3(-0.651791, -0.0335107, -0.95059), Vector3(-0.0728148, -0.49733, -0.179795)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ibexy"]
+_data = {
+"RESET": SubResource("Animation_glbtq"),
+"idle": SubResource("Animation_kj7qr")
+}
+
+[node name="Crate" type="Area3D"]
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Root Scene" parent="Pivot" instance=ExtResource("1_c6p22")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_54wgw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ibexy")
+}
+autoplay = "idle"
+speed_scale = 0.357

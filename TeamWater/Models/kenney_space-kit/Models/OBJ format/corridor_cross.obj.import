@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bsynytkssmt3b"
+path="res://.godot/imported/corridor_cross.obj-15a38635e9ce974325b058141e22398e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/corridor_cross.obj-15a38635e9ce974325b058141e22398e.mesh"]
+
+source_file="res://Models/kenney_space-kit/Models/OBJ format/corridor_cross.obj"
+dest_files=["res://.godot/imported/corridor_cross.obj-15a38635e9ce974325b058141e22398e.mesh", "res://.godot/imported/corridor_cross.obj-15a38635e9ce974325b058141e22398e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

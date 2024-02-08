@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://8jhvad0ro4fl"]
+[gd_scene load_steps=8 format=3 uid="uid://8jhvad0ro4fl"]
 
 [ext_resource type="Script" path="res://player.cs" id="1_0m8vn"]
-[ext_resource type="PackedScene" uid="uid://bm6rugfb5tbbh" path="res://bullet.tscn" id="2_r8eqy"]
 [ext_resource type="PackedScene" uid="uid://cxgs5vynhb3hf" path="res://Models/Spaceship.glb" id="2_w2k6h"]
 [ext_resource type="PackedScene" uid="uid://j11w1wme71yy" path="res://Gun.tscn" id="4_333rp"]
 
@@ -51,7 +50,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00260115, 0, 0.0215044)
 collision_mask = 15
 safe_margin = 1.0
 script = ExtResource("1_0m8vn")
-bulletScene = ExtResource("2_r8eqy")
 
 [node name="Pivot" type="Node3D" parent="."]
 
