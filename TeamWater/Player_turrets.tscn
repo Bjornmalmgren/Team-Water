@@ -1,11 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://4l2y1momh1ow"]
+[gd_scene load_steps=9 format=3 uid="uid://8jhvad0ro4fl"]
 
-[ext_resource type="Script" path="res://Player_turrets.cs" id="1_7pfck"]
-[ext_resource type="PackedScene" path="res://bullet.tscn" id="2_r8eqy"]
-[ext_resource type="PackedScene" path="res://Models/Spaceship.glb" id="2_w2k6h"]
-[ext_resource type="PackedScene" path="res://Gun.tscn" id="4_333rp"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_wku5r"]
+[ext_resource type="Script" path="res://player.cs" id="1_0m8vn"]
+[ext_resource type="PackedScene" uid="uid://bm6rugfb5tbbh" path="res://bullet.tscn" id="2_r8eqy"]
+[ext_resource type="PackedScene" uid="uid://cxgs5vynhb3hf" path="res://Models/Spaceship.glb" id="2_w2k6h"]
+[ext_resource type="PackedScene" uid="uid://j11w1wme71yy" path="res://Gun.tscn" id="4_333rp"]
 
 [sub_resource type="Animation" id="Animation_3xd1t"]
 length = 0.001
@@ -45,14 +43,15 @@ _data = {
 "shoot_animate": SubResource("Animation_c6swy")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_wku5r"]
+radius = 3.27698
+
 [node name="Player_Turrets" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00260115, 0, 0.0215044)
-script = ExtResource("1_7pfck")
+collision_mask = 15
+safe_margin = 1.0
+script = ExtResource("1_0m8vn")
 bulletScene = ExtResource("2_r8eqy")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69226, 0)
-shape = SubResource("SphereShape3D_wku5r")
 
 [node name="Pivot" type="Node3D" parent="."]
 
@@ -78,3 +77,7 @@ libraries = {
 
 [node name="TargetPoint" type="Node3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.94392)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69226, 0)
+shape = SubResource("SphereShape3D_wku5r")

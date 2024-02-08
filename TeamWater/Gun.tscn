@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://ba7uthemh8x3r"]
+[gd_scene load_steps=3 format=3 uid="uid://j11w1wme71yy"]
 
 [ext_resource type="Script" path="res://Gun.cs" id="1_bh3ar"]
 
@@ -13,7 +13,7 @@ mesh = SubResource("BoxMesh_cpspj")
 skeleton = NodePath("")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00377279, 0.712016, 0.904531)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00377279, 0.712016, 3.90453)
 exclude_parent = false
 target_position = Vector3(0, 0, -1)
 debug_shape_custom_color = Color(0, 1, 0.768627, 1)

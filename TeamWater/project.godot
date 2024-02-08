@@ -18,6 +18,11 @@ config/icon="res://icon.svg"
 
 project/assembly_name="Team-water"
 
+[filesystem]
+
+import/layer_4="Bullets"
+import/layer_3="Pickups"
+
 [input]
 
 move_left={
