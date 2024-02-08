@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvged7fiy1y5g"]
+
+[ext_resource type="PackedScene" uid="uid://mqe4mlcllp2d" path="res://Models/kenney_space-kit/Models/GLTF format/craft_speederA.glb" id="1_hki4h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_13s1c"]
+size = Vector3(1, 1, 1.96143)
+
+[node name="Player" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.226814, -0.480713)
+shape = SubResource("BoxShape3D_13s1c")
+
+[node name="CharacterModel" type="Node3D" parent="."]
+
+[node name="craft_speederA2" parent="CharacterModel" instance=ExtResource("1_hki4h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
