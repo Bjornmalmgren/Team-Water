@@ -6,7 +6,8 @@ public partial class player : CharacterBody3D
 {
     [Export]
     int id { get; set; }
-
+    public bool spreadShoot = true;
+    public int amountOfBullets = 4;
     int frames;
 
     [Export]
@@ -62,13 +63,20 @@ public partial class player : CharacterBody3D
         }
         if (Input.IsJoyButtonPressed(id, JoyButton.X) && frames % 10 == 0)
         {
-            var instance = bulletScene.Instantiate<bullet>();
+           
+            for (int i = 0; i < amountOfBullets; i++)
+            {
+                var instance = bulletScene.Instantiate<bullet>();
 
-            GetTree().Root.AddChild(instance);
+                GetTree().Root.AddChild(instance);
+                instance.GlobalPosition = gun.GlobalPosition;
+                instance.GlobalRotation = gun.GlobalRotation;
+            }
+            
+
             //instance.Transform.Scaled(new Vector3(0.1f, 0, 0.1f));
             //instance.Transform.ScaledLocal(new Vector3(0.1f, 0, 0.1f));
-            instance.GlobalPosition = gun.GlobalPosition;
-            instance.GlobalRotation = gun.GlobalRotation;
+
             //instance.GlobalTransform = gun.GlobalTransform;
             //gun.Rotation = this.Rotation;
             //gun.LookAt(TargetPoint.Position);

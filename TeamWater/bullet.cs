@@ -6,13 +6,16 @@ public partial class bullet : Node3D
 {
 	public int SPEED = 100;
 
-	public int damage = 2;
+	public bool spreadShoot = true;
+	public int amountOfShoots = 4;
 
-	MeshInstance3D mesh;
+	public int damage = 2;
+    Godot.Vector3 speed;
+    MeshInstance3D mesh;
 	RayCast3D ray;
     game_manger gameManger;
 	Area3D area;
-
+	float range;
 	public override void _Ready()
 	{
 	
@@ -20,14 +23,29 @@ public partial class bullet : Node3D
 		ray = GetNode<RayCast3D>("RayCast3D");
 		gameManger = GetTree().Root.GetNode<game_manger>("Game Manger");
 		area = GetNode<Area3D>("Area3D");
-	}
+        var rng = new RandomNumberGenerator();
+        range = rng.RandfRange(-1.0f, 1.0f);
+    }
 	public override void _Process(double delta)
 	{
 		
         Scale = new Godot.Vector3(0.2f, 0.2f, 0.2f);
-        Godot.Vector3 speed = new Godot.Vector3(0, 0, -SPEED);
-        speed.Z *= (float)delta;
-        GlobalPosition += Transform.Basis * speed;
+		
+        if (spreadShoot == false)
+		{
+            speed = new Godot.Vector3(0, 0, -SPEED);
+            speed.Z *= (float)delta;
+            GlobalPosition += Transform.Basis * speed;
+        } else 
+		{
+
+			speed = new Godot.Vector3(range, 0, -SPEED);
+			speed.Z *= (float)delta;
+            GlobalPosition += Transform.Basis * speed;
+            
+
+        }
+
 		
 	}
 	
