@@ -6,10 +6,10 @@ public partial class player : CharacterBody3D
 {
     [Export]
     int id { get; set; }
-    public bool spreadShoot = true;
-    public int amountOfBullets = 4;
+    public bool spreadShoot = false;
+    public int amountOfBullets = 1;
     int frames;
-
+    int amountOfFramesBetweenShoots = 10;
     [Export]
     public float gravity { get; set; } = 9.8f;
 
@@ -61,13 +61,13 @@ public partial class player : CharacterBody3D
         {
             direction.Z -= 1.0f;
         }
-        if (Input.IsJoyButtonPressed(id, JoyButton.X) && frames % 10 == 0)
+        if (Input.IsJoyButtonPressed(id, JoyButton.X) && frames == amountOfFramesBetweenShoots)
         {
            
             for (int i = 0; i < amountOfBullets; i++)
             {
                 var instance = bulletScene.Instantiate<bullet>();
-
+                instance.CheckSpredShoot(spreadShoot);
                 GetTree().Root.AddChild(instance);
                 instance.GlobalPosition = gun.GlobalPosition;
                 instance.GlobalRotation = gun.GlobalRotation;
@@ -94,10 +94,11 @@ public partial class player : CharacterBody3D
         // Moving the character
         Velocity = _targetVelocity;
         MoveAndSlide();
-        frames++;
-        if (frames == 60) {
+        if(frames >= amountOfFramesBetweenShoots)
+        {
             frames = 0;
         }
+        frames++;
     }
 
     public void SetId(int id)
@@ -105,15 +106,21 @@ public partial class player : CharacterBody3D
         this.id = id;
     }
 
+    public void SetAmountOfShoots(int shoots)
+    {
+        amountOfBullets = shoots;
+    }
+
     public void TakeDamage(int damage)
     {
         health = health - damage;
     }
-
-    public void Hp()
+    public void SetFrameGap(int frameGap)
     {
-        GD.Print(health);
+        amountOfFramesBetweenShoots = frameGap;
     }
+
+
 
     public void Die()
     {
@@ -123,6 +130,12 @@ public partial class player : CharacterBody3D
     public int GetId()
     {
         return id;
+    }
+
+    public void MakeSpreadShot()
+    {
+        spreadShoot = true;
+        amountOfBullets = 4;
     }
 
 }

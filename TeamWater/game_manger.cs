@@ -27,6 +27,7 @@ public partial class game_manger : Node3D
 	{
         pickup = weaponPickupScene.Instantiate<weapon_pickup>();
         pickup.Position = new Vector3(0, 0.427f, 0);
+        
         AddChild(pickup);
         var ids = Input.GetConnectedJoypads();
         id1 = ids[0];
@@ -48,9 +49,33 @@ public partial class game_manger : Node3D
 	}
 	public void _on_pickup_area_entered(player body)
 	{
+        GD.Print("player");
         //gets player id so that we know who to give the pickups stats to
-        body.GetId();
-	}
+        int id = body.GetId();
+        if(id == 0)
+        {
+            body.spreadShoot = pickup.GetSpread();
+            body.amountOfBullets = pickup.GetAmountOfBUllets();
+            body.SetFrameGap(pickup.GetAmountOfFrames());
+        }
+        if (id == 1)
+        {
+            body.spreadShoot = pickup.GetSpread();
+            body.amountOfBullets = pickup.GetAmountOfBUllets();
+            body.SetFrameGap(pickup.GetAmountOfFrames());
+        }
+
+        if (id == 2)
+        {
+
+        }
+
+        if (id == 3)
+        {
+
+        }
+        GD.Print(body.amountOfBullets);
+    }
 
 	public void Spawn_Character()
 	{
@@ -100,8 +125,6 @@ public partial class game_manger : Node3D
         {
             player objectHit = (player)collidingObject;
             objectHit.TakeDamage(damage);
-            player1.Hp();
-            player2.Hp();
         }
         if (type == pickup.GetType())
         {

@@ -6,8 +6,7 @@ public partial class bullet : Node3D
 {
 	public int SPEED = 100;
 
-	public bool spreadShoot = true;
-	public int amountOfShoots = 4;
+	public bool spreadShoot = false;
 
 	public int damage = 2;
     Godot.Vector3 speed;
@@ -59,4 +58,9 @@ public partial class bullet : Node3D
 		gameManger._on_area_3d_area_entered(collisionObject, damage);
 
     }
+	public void CheckSpredShoot(bool spred)
+	{
+		spreadShoot = spred;
+	}
+
 }

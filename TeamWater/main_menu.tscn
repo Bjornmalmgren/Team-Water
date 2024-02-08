@@ -3,17 +3,12 @@
 [ext_resource type="Script" path="res://game_manger.cs" id="1_27vi6"]
 [ext_resource type="PackedScene" uid="uid://8jhvad0ro4fl" path="res://Player_turrets.tscn" id="2_md82i"]
 [ext_resource type="PackedScene" uid="uid://bc11ulb8i1rva" path="res://weapon_pickup.tscn" id="2_pqicl"]
-[ext_resource type="PackedScene" uid="uid://bbcxlcn83kr06" path="res://main.tscn" id="3_kdh7r"]
+[ext_resource type="PackedScene" path="res://testing_room_1.tscn" id="4_q1cga"]
 
 [node name="Game Manger" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.7892, 0)
 script = ExtResource("1_27vi6")
 playerScene = ExtResource("2_md82i")
+weaponPickupScene = ExtResource("2_pqicl")
 
-[node name="Pickup" parent="." instance=ExtResource("2_pqicl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.2048, -3.729)
-visible = false
-
-[node name="Main" parent="." instance=ExtResource("3_kdh7r")]
-
-[connection signal="body_entered" from="Pickup" to="." method="_on_pickup_area_entered"]
+[node name="TestingRoom1" parent="." instance=ExtResource("4_q1cga")]

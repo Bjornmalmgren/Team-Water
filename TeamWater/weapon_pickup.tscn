@@ -18,3 +18,5 @@ shape = SubResource("BoxShape3D_7dv47")
 [node name="Root Scene" parent="Pivot" instance=ExtResource("2_xtg1c")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="CallGameManger"]
