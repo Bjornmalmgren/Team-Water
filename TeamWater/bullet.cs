@@ -55,6 +55,7 @@ public partial class bullet : Node3D
 
     public void CollisionDetected(Node collisionObject)
 	{
+
 		gameManger._on_area_3d_area_entered(collisionObject, damage);
 
     }

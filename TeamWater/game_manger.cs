@@ -7,7 +7,10 @@ public partial class game_manger : Node3D
     public PackedScene playerScene { get; set; }
     [Export]
     public PackedScene weaponPickupScene { get; set; }
+    [Export]
+    public PackedScene enemyScene { get; set; }
 
+    Enemy_Basic_1 enemy;
     weapon_pickup pickup;
     player player1;
     player player2;
@@ -26,6 +29,7 @@ public partial class game_manger : Node3D
     public override void _Ready()
 	{
         pickup = weaponPickupScene.Instantiate<weapon_pickup>();
+        enemy = enemyScene.Instantiate<Enemy_Basic_1>();
         pickup.Position = new Vector3(0, 0.427f, 0);
         
         AddChild(pickup);
@@ -79,6 +83,7 @@ public partial class game_manger : Node3D
 
 	public void Spawn_Character()
 	{
+        
         if (Input.IsJoyButtonPressed(id1, JoyButton.A) && !player1Spawned)
         {
             player1 = playerScene.Instantiate<player>();
@@ -129,6 +134,11 @@ public partial class game_manger : Node3D
         if (type == pickup.GetType())
         {
             weapon_pickup objectHit = (weapon_pickup)collidingObject;
+            objectHit.TakeDamage(damage);
+        }
+        if (type == enemy.GetType())
+        {
+            Enemy_Basic_1 objectHit = (Enemy_Basic_1)collidingObject;
             objectHit.TakeDamage(damage);
         }
     }

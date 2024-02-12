@@ -23,7 +23,8 @@ public partial class player : CharacterBody3D
     Node3D Gun;
     RayCast3D gun;
     Node3D TargetPoint;
-
+    ProgressBar Healthbar;
+    HealthBar heal;
     [Export]
     public PackedScene bulletScene { get; set; }
 
@@ -33,6 +34,9 @@ public partial class player : CharacterBody3D
         Gun = GetNode<Node3D>("Pivot/Gun");
         gun = GetNode<RayCast3D>("Pivot/Gun/RayCast3D");
         TargetPoint = GetNode<Node3D>("Pivot/TargetPoint");
+        Healthbar = GetNode<ProgressBar>("SubViewport/HealthBar");
+        heal = (HealthBar)Healthbar;
+        heal.init_health(health);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -72,14 +76,6 @@ public partial class player : CharacterBody3D
                 instance.GlobalPosition = gun.GlobalPosition;
                 instance.GlobalRotation = gun.GlobalRotation;
             }
-            
-
-            //instance.Transform.Scaled(new Vector3(0.1f, 0, 0.1f));
-            //instance.Transform.ScaledLocal(new Vector3(0.1f, 0, 0.1f));
-
-            //instance.GlobalTransform = gun.GlobalTransform;
-            //gun.Rotation = this.Rotation;
-            //gun.LookAt(TargetPoint.Position);
 
         }
         if (direction != Vector3.Zero)
@@ -114,6 +110,8 @@ public partial class player : CharacterBody3D
     public void TakeDamage(int damage)
     {
         health = health - damage;
+        heal.SetHealth(health);
+       
     }
     public void SetFrameGap(int frameGap)
     {
@@ -136,6 +134,7 @@ public partial class player : CharacterBody3D
     {
         spreadShoot = true;
         amountOfBullets = 4;
+       
     }
 
 }

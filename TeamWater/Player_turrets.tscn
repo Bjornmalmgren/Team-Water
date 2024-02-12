@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://8jhvad0ro4fl"]
+[gd_scene load_steps=11 format=3 uid="uid://8jhvad0ro4fl"]
 
 [ext_resource type="Script" path="res://player.cs" id="1_0m8vn"]
 [ext_resource type="PackedScene" uid="uid://bm6rugfb5tbbh" path="res://bullet.tscn" id="2_v5unc"]
 [ext_resource type="PackedScene" uid="uid://cxgs5vynhb3hf" path="res://Models/Spaceship.glb" id="2_w2k6h"]
 [ext_resource type="PackedScene" uid="uid://j11w1wme71yy" path="res://Gun.tscn" id="4_333rp"]
+[ext_resource type="PackedScene" uid="uid://pfphaie5w83v" path="res://health_bar.tscn" id="5_uqktc"]
 
 [sub_resource type="Animation" id="Animation_3xd1t"]
 length = 0.001
@@ -46,6 +47,9 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_wku5r"]
 radius = 3.27698
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_mu2hh"]
+viewport_path = NodePath("SubViewport")
+
 [node name="Player_Turrets" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00260115, 0, 0.0215044)
 collision_mask = 15
@@ -84,3 +88,16 @@ shape = SubResource("SphereShape3D_wku5r")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1000, 100)
+
+[node name="HealthBar" parent="SubViewport" instance=ExtResource("5_uqktc")]
+offset_right = 1200.0
+offset_bottom = 130.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0649503, 0.997888, 0, -0.997888, 0.0649503, 0, 1.96876, -5.23617)
+texture = SubResource("ViewportTexture_mu2hh")
