@@ -136,5 +136,4 @@ public partial class player : CharacterBody3D
         amountOfBullets = 4;
        
     }
-
 }

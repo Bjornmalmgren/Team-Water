@@ -49,9 +49,12 @@ public partial class game_manger : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-            Spawn_Character();
-	}
-	public void _on_pickup_area_entered(player body)
+        Spawn_Character();
+        
+
+
+    }
+    public void _on_pickup_area_entered(player body)
 	{
         GD.Print("player");
         //gets player id so that we know who to give the pickups stats to
@@ -141,5 +144,50 @@ public partial class game_manger : Node3D
             Enemy_Basic_1 objectHit = (Enemy_Basic_1)collidingObject;
             objectHit.TakeDamage(damage);
         }
+    }
+
+    public Vector3 CheckClosestPlayer(Vector3 position)
+    {
+        var closestPosX = 0.0f;
+        var closestPosZ = 0.0f;
+        if (player1Spawned) 
+        {
+            closestPosX = Math. Abs(player1.Position.X - position.X);
+            closestPosZ = Math.Abs(player1.Position.Z - position.Z);
+        }
+        if (player2Spawned)
+        {
+            if(Math.Abs(player2.Position.X - position.X) < closestPosX && 
+                Math.Abs(player2.Position.Z - position.Z) < closestPosZ)
+            {
+                closestPosZ = Math.Abs(player2.Position.Z - position.Z);
+                closestPosX = Math.Abs(player2.Position.X - position.X);
+            }
+        }
+        if (player3Spawned)
+        {
+            if (Math.Abs(player3.Position.X - position.X) < closestPosX &&
+                Math.Abs(player3.Position.Z - position.Z) < closestPosZ)
+            {
+                closestPosZ = Math.Abs(player3.Position.Z - position.Z);
+                closestPosX = Math.Abs(player3.Position.X - position.X);
+            }
+        }
+        if (player4Spawned)
+        {
+            if (Math.Abs(player4.Position.X - position.X) < closestPosX &&
+                Math.Abs(player4.Position.Z - position.Z) < closestPosZ)
+            {
+                closestPosZ = Math.Abs(player4.Position.Z - position.Z);
+                closestPosX = Math.Abs(player4.Position.X - position.X);
+            }
+        }
+        return new Vector3(closestPosX, 0, closestPosZ);
+    }
+
+    public bool[] GetPlayerSpawned()
+    {
+        bool[] result = {player1Spawned,player2Spawned,player3Spawned,player4Spawned };
+        return result;
     }
 }

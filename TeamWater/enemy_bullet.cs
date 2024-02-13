@@ -56,14 +56,11 @@ public partial class enemy_bullet : Node3D
 
     public void Collision(Node objects)
     {
-        GD.Print("test");
     }
 
     public void CollisionDetectedEnemyBullet(Node collisionObject)
     {
-        GD.Print("test");
         gameManger._on_area_3d_area_entered(collisionObject, damage);
-
     }
     public void CheckSpredShoot(bool spred)
     {

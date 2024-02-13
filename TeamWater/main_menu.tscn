@@ -17,4 +17,4 @@ enemyScene = ExtResource("5_jresv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09827, 0.282909, -0.565798)
 
 [node name="Enemy_Basic_1" parent="." instance=ExtResource("5_jresv")]
-transform = Transform3D(-0.0357367, 0, -0.999361, 0, 1, 0, 0.999361, 0, -0.0357367, 7.425, 0, 2.544)
+transform = Transform3D(-0.0349053, -0.00162243, -0.999389, 0.00349065, 0.999992, -0.00174533, 0.999384, -0.00354944, -0.0348994, 7.425, 0, 2.544)
