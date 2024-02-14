@@ -35,18 +35,25 @@ public partial class Enemy_Basic_1 : RigidBody3D
 	public override void _Process(double delta)
 	{
         bool[] isSpawned = gameManger.GetPlayerSpawned();
-        
+
         if (isSpawned[0] && isSpawned[1])
         {
+            target = gameManger.CheckClosestPlayer(GlobalPosition);
+            //target = gameManger.playerPos();
+            //LookAt(target,Vector3.Up);
+
+            Vector3 direction = target - this.GlobalPosition;
+            direction = direction.Normalized();
+            //float angle = direction.AngleTo(this.Basis.Z);
+            Vector3 perp = direction.Cross(Vector3.Up);
+            Basis b = new Basis(perp, Vector3.Up, direction);
+            this.Basis = b;
+
+
             if (!hasTarget)
             {
-                target = gameManger.CheckClosestPlayer(Position);
                 hasTarget = true;
             }
-            GD.Print(gameManger.CheckClosestPlayer(Position));
-            LookAt(target, null);
-            
-            Rotation = new Vector3(0.1f, Rotation.Y, 0.1f);
         }
         if (health <= 0)
         {

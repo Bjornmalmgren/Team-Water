@@ -148,43 +148,56 @@ public partial class game_manger : Node3D
 
     public Vector3 CheckClosestPlayer(Vector3 position)
     {
-        var closestPosX = 0.0f;
-        var closestPosZ = 0.0f;
-        if (player1Spawned) 
+
+
+        player[] playerList = {player1, player2};
+        Vector3 closestPlayer = player1.GlobalPosition;
+        float closestDist = closestPlayer.Length();
+
+        for (int i = 0; i < playerList.Length; i++)
         {
-            closestPosX = Math. Abs(player1.Position.X - position.X);
-            closestPosZ = Math.Abs(player1.Position.Z - position.Z);
-        }
-        if (player2Spawned)
-        {
-            if(Math.Abs(player2.Position.X - position.X) < closestPosX && 
-                Math.Abs(player2.Position.Z - position.Z) < closestPosZ)
+            Vector3 dist = position - playerList[i].GlobalPosition;
+            float magnitude = dist.Length();
+
+            if(closestDist > magnitude)
             {
-                closestPosZ = Math.Abs(player2.Position.Z - position.Z);
-                closestPosX = Math.Abs(player2.Position.X - position.X);
+                closestPlayer = playerList[i].GlobalPosition;
             }
+                
+
         }
-        if (player3Spawned)
-        {
-            if (Math.Abs(player3.Position.X - position.X) < closestPosX &&
-                Math.Abs(player3.Position.Z - position.Z) < closestPosZ)
-            {
-                closestPosZ = Math.Abs(player3.Position.Z - position.Z);
-                closestPosX = Math.Abs(player3.Position.X - position.X);
-            }
-        }
-        if (player4Spawned)
-        {
-            if (Math.Abs(player4.Position.X - position.X) < closestPosX &&
-                Math.Abs(player4.Position.Z - position.Z) < closestPosZ)
-            {
-                closestPosZ = Math.Abs(player4.Position.Z - position.Z);
-                closestPosX = Math.Abs(player4.Position.X - position.X);
-            }
-        }
-        return new Vector3(closestPosX, 0, closestPosZ);
+
+
+
+
+        //if (player3Spawned)
+        //{
+        //    if (Math.Abs(player3.GlobalPosition.X - position.X) < closestPosX &&
+        //        Math.Abs(player3.Position.Z - position.Z) < closestPosZ)
+        //    {
+        //        closestPosZ = Math.Abs(player3.Position.Z - position.Z);
+        //        closestPosX = Math.Abs(player3.Position.X - position.X);
+
+        //    }
+        //}
+        //if (player4Spawned)
+        //{
+        //    if (Math.Abs(player4.Position.X - position.X) < closestPosX &&
+        //        Math.Abs(player4.Position.Z - position.Z) < closestPosZ)
+        //    {
+        //        closestPosZ = Math.Abs(player4.Position.Z - position.Z);
+        //        closestPosX = Math.Abs(player4.Position.X - position.X);
+
+        //    }
+           return closestPlayer;
+        //}
     }
 
+    public Vector3 playerPos() 
+    {
+
+        return player1.GlobalPosition; 
+    }
     public bool[] GetPlayerSpawned()
     {
         bool[] result = {player1Spawned,player2Spawned,player3Spawned,player4Spawned };

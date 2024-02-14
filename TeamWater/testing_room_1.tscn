@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://clb00im706gy5"]
 
 [ext_resource type="Texture2D" uid="uid://bcwqu31ln7gar" path="res://Textures/arid_ground_textures__pansapiens/red_earth_02_2048x2048.png" id="1_0swdn"]
-[ext_resource type="PackedScene" path="res://Models/kenney_space-kit/Models/GLTF format/bones.glb" id="1_as6b8"]
-[ext_resource type="PackedScene" path="res://Models/kenney_space-kit/Models/GLTF format/craft_speederC.glb" id="2_juamj"]
-[ext_resource type="PackedScene" path="res://Models/kenney_space-kit/Models/GLTF format/meteor_detailed.glb" id="3_6j2ff"]
-[ext_resource type="PackedScene" path="res://Models/kenney_space-kit/Models/GLTF format/crater.glb" id="4_la1ev"]
-[ext_resource type="PackedScene" path="res://Models/kenney_space-kit/Models/GLTF format/craterLarge.glb" id="5_5haqh"]
+[ext_resource type="PackedScene" uid="uid://bxr20ib2ls1if" path="res://Models/kenney_space-kit/Models/GLTF format/bones.glb" id="1_as6b8"]
+[ext_resource type="PackedScene" uid="uid://dpfd51us3y4c1" path="res://Models/kenney_space-kit/Models/GLTF format/craft_speederC.glb" id="2_juamj"]
+[ext_resource type="PackedScene" uid="uid://dkkatx8hm8jsl" path="res://Models/kenney_space-kit/Models/GLTF format/meteor_detailed.glb" id="3_6j2ff"]
+[ext_resource type="PackedScene" uid="uid://dwbl3h34coder" path="res://Models/kenney_space-kit/Models/GLTF format/crater.glb" id="4_la1ev"]
+[ext_resource type="PackedScene" uid="uid://didq8rpa0u145" path="res://Models/kenney_space-kit/Models/GLTF format/craterLarge.glb" id="5_5haqh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iiw23"]
 size = Vector3(50, 1, 50)
