@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Security.Cryptography;
 
-public partial class player : CharacterBody3D
+public partial class player : RigidBody3D
 {
     [Export]
     int id { get; set; }
@@ -12,14 +12,15 @@ public partial class player : CharacterBody3D
     int amountOfFramesBetweenShoots = 10;
     [Export]
     public float gravity { get; set; } = 9.8f;
-
+    public bool isSpawned = false;
     [Export]
     public int Speed { get; set; } = 14;
 
     private Vector3 _targetVelocity = Vector3.Zero;
 
     private int health = 15;
-
+    private float MoveForce = 0;
+    float rotationSpeed = 1.5f;
     Node3D Gun;
     RayCast3D gun;
     Node3D TargetPoint;
@@ -30,7 +31,7 @@ public partial class player : CharacterBody3D
 
     public override void _Ready()
     {
-
+        isSpawned = true;
         Gun = GetNode<Node3D>("Pivot/Gun");
         gun = GetNode<RayCast3D>("Pivot/Gun/RayCast3D");
         TargetPoint = GetNode<Node3D>("Pivot/TargetPoint");
@@ -51,23 +52,33 @@ public partial class player : CharacterBody3D
         //controlls for player 1
         if (Input.GetJoyAxis(id, JoyAxis.LeftX) > 0.3f)
         {
-            direction.X += 1.0f;
+            direction += Transform.Basis.X;
         }
-        if(Input.GetJoyAxis(id, JoyAxis.LeftX) < -0.3f)
+        if (Input.GetJoyAxis(id, JoyAxis.LeftX) < -0.3f)
         {
-            direction.X -= 1.0f;
+            direction -= Transform.Basis.X;
         }
         if (Input.GetJoyAxis(id, JoyAxis.LeftY) > 0.3f)
         {
-            direction.Z += 1.0f;
+            //for movement backwards
+            //direction += Transform.Basis.Z;
         }
-        if(Input.GetJoyAxis(id, JoyAxis.LeftY) < -0.3f)
+        if (Input.GetJoyAxis(id, JoyAxis.LeftY) < -0.3f)
         {
-            direction.Z -= 1.0f;
+            direction -= Transform.Basis.Z;
+        }
+        if (Input.GetJoyAxis(id, JoyAxis.TriggerRight) > 0.3f)
+        {
+            direction -= Transform.Basis.Z;
+            MoveForce = 0.003f;
+        }
+        else
+        {
+            MoveForce = 0;
         }
         if (Input.IsJoyButtonPressed(id, JoyButton.X) && frames == amountOfFramesBetweenShoots)
         {
-           
+
             for (int i = 0; i < amountOfBullets; i++)
             {
                 var instance = bulletScene.Instantiate<bullet>();
@@ -80,17 +91,18 @@ public partial class player : CharacterBody3D
         }
         if (direction != Vector3.Zero)
         {
-            direction = direction.Normalized();
-            GetNode<Node3D>("Pivot").LookAt(Position - 60*direction);
+            double rotation = Mathf.LerpAngle(Rotation.Y, Mathf.Atan2(-direction.X, -direction.Z), delta * rotationSpeed);
+            Rotation = new Vector3(0, (float)rotation, 0);
+
+            if (MoveForce != 0)
+            {
+                direction = direction.Normalized() * MoveForce;
+                ApplyImpulse(direction);
+            }
         }
 
-        _targetVelocity.X = direction.X * Speed;
-        _targetVelocity.Z = direction.Z * Speed;
-
         // Moving the character
-        Velocity = _targetVelocity;
-        MoveAndSlide();
-        if(frames >= amountOfFramesBetweenShoots)
+        if (frames >= amountOfFramesBetweenShoots)
         {
             frames = 0;
         }
@@ -111,17 +123,21 @@ public partial class player : CharacterBody3D
     {
         health = health - damage;
         heal.SetHealth(health);
-       
+
     }
     public void SetFrameGap(int frameGap)
     {
         amountOfFramesBetweenShoots = frameGap;
     }
 
-
+    public bool IsPlayerSpawned()
+    {
+        return isSpawned;
+    }
 
     public void Die()
     {
+        isSpawned = false;
         QueueFree();
     }
 
@@ -134,6 +150,7 @@ public partial class player : CharacterBody3D
     {
         spreadShoot = true;
         amountOfBullets = 4;
-       
+
     }
+
 }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bc11ulb8i1rva"]
 
-[ext_resource type="Script" path="res://weapon_pickup.cs" id="1_kqn0j"]
+[ext_resource type="Script" path="res://Scripts/weapon_pickup.cs" id="1_kqn0j"]
 [ext_resource type="PackedScene" uid="uid://gf706oyjlei5" path="res://Models/Pickup_Sphere.glb" id="2_xtg1c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7dv47"]

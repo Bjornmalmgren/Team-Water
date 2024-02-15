@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bm6rugfb5tbbh"]
 
-[ext_resource type="Script" path="res://bullet.cs" id="1_bn8so"]
+[ext_resource type="Script" path="res://Scripts/bullet.cs" id="1_gdt8u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fy4ca"]
 albedo_color = Color(0.878431, 0.12549, 0, 1)
@@ -13,13 +13,12 @@ material = SubResource("StandardMaterial3D_fy4ca")
 radius = 1.162
 height = 1.662
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bi2xs"]
-radius = 1.28555
-height = 31.243
+[sub_resource type="SphereShape3D" id="SphereShape3D_50ej6"]
+radius = 1.14843
 
 [node name="Bullet" type="Node3D"]
 transform = Transform3D(0.999218, 0, 0, 0, 0.999218, 0, 0, 0, 0.999218, 0, 0, 0)
-script = ExtResource("1_bn8so")
+script = ExtResource("1_gdt8u")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_un32d")
@@ -38,7 +37,7 @@ collision_layer = 8
 collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("CapsuleShape3D_bi2xs")
+shape = SubResource("SphereShape3D_50ej6")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Area3D" to="." method="CollisionDetected"]

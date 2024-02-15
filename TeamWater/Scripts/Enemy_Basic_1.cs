@@ -38,6 +38,7 @@ public partial class Enemy_Basic_1 : RigidBody3D
 
         if (isSpawned[0] && isSpawned[1])
         {
+            GD.Print("test");
             target = gameManger.CheckClosestPlayer(GlobalPosition);
             //target = gameManger.playerPos();
             //LookAt(target,Vector3.Up);

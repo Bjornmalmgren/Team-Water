@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://cdf3k282i1m5k"]
 
-[ext_resource type="Script" path="res://Enemy_Basic_1.cs" id="1_gg527"]
-[ext_resource type="PackedScene" uid="uid://j11w1wme71yy" path="res://Gun.tscn" id="2_70xnj"]
-[ext_resource type="PackedScene" uid="uid://dnx7siv6gkua7" path="res://enemy_bullet.tscn" id="2_y7pwp"]
-[ext_resource type="PackedScene" uid="uid://pfphaie5w83v" path="res://health_bar.tscn" id="4_0wxr6"]
+[ext_resource type="Script" path="res://Scripts/Enemy_Basic_1.cs" id="1_gg527"]
+[ext_resource type="PackedScene" uid="uid://j11w1wme71yy" path="res://Scenes/Gun.tscn" id="2_70xnj"]
+[ext_resource type="PackedScene" uid="uid://dnx7siv6gkua7" path="res://Scenes/enemy_bullet.tscn" id="2_y7pwp"]
+[ext_resource type="PackedScene" uid="uid://pfphaie5w83v" path="res://Scenes/health_bar.tscn" id="4_0wxr6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2v0ha"]
 radius = 0.914584
@@ -23,6 +23,9 @@ material = SubResource("StandardMaterial3D_r1ix8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40333, 0)
 collision_layer = 2
 collision_mask = 11
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
 script = ExtResource("1_gg527")
 enemy_bulletScene = ExtResource("2_y7pwp")
 

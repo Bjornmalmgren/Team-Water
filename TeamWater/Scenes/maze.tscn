@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://d27xn8q8mti25"]
+
+[ext_resource type="ArrayMesh" uid="uid://dvivy1ewrwu1c" path="res://Models/kenney_space-kit/Models/OBJ format/corridor_corner.obj" id="1_51wyq"]
+[ext_resource type="ArrayMesh" uid="uid://2c1mciubr23x" path="res://Models/kenney_space-kit/Models/OBJ format/corridor.obj" id="2_886b3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p7oxr"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("1_51wyq")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500114, 0)
+shape = SubResource("BoxShape3D_p7oxr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_886b3")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500114, 0)
+shape = SubResource("BoxShape3D_p7oxr")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
