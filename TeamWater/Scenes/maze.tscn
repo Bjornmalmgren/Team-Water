@@ -11,18 +11,18 @@
 visible = false
 mesh = ExtResource("1_51wyq")
 
-[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500114, 0)
 shape = SubResource("BoxShape3D_p7oxr")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_886b3")
 
-[node name="Area3D" type="Area3D" parent="MeshInstance3D2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500114, 0)
 shape = SubResource("BoxShape3D_p7oxr")
 

@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Security.Cryptography;
 
-public partial class player : RigidBody3D
+public partial class player : RigidBody3D, HitInterface
 {
     [Export]
     int id { get; set; }
@@ -20,7 +20,7 @@ public partial class player : RigidBody3D
 
     private int health = 15;
     private float MoveForce = 0;
-    float rotationSpeed = 1.5f;
+    float rotationSpeed = 2f;
     Node3D Gun;
     RayCast3D gun;
     Node3D TargetPoint;
@@ -49,6 +49,7 @@ public partial class player : RigidBody3D
 
         //GD.Print(Position + "p: " + id);
         var direction = Vector3.Zero;
+        var inputMovemnt = Vector3.Zero;
         //controlls for player 1
         if (Input.GetJoyAxis(id, JoyAxis.LeftX) > 0.3f)
         {
@@ -58,10 +59,15 @@ public partial class player : RigidBody3D
         {
             direction -= Transform.Basis.X;
         }
-        if (Input.GetJoyAxis(id, JoyAxis.LeftY) > 0.3f)
+        if (Input.GetJoyAxis(id, JoyAxis.TriggerLeft) > 0.3f)
         {
-            //for movement backwards
-            //direction += Transform.Basis.Z;
+            inputMovemnt += Transform.Basis.Z;
+            MoveForce = 0.2f;
+            if (inputMovemnt.LengthSquared() > 0)
+            {
+                inputMovemnt = inputMovemnt.Normalized() * MoveForce;
+                ApplyForce(inputMovemnt);
+            }
         }
         if (Input.GetJoyAxis(id, JoyAxis.LeftY) < -0.3f)
         {
@@ -69,8 +75,13 @@ public partial class player : RigidBody3D
         }
         if (Input.GetJoyAxis(id, JoyAxis.TriggerRight) > 0.3f)
         {
-            direction -= Transform.Basis.Z;
-            MoveForce = 0.003f;
+            inputMovemnt -= Transform.Basis.Z;
+            MoveForce = 0.2f;
+            if (inputMovemnt.LengthSquared() > 0)
+            {
+                inputMovemnt = inputMovemnt.Normalized() * MoveForce;
+                ApplyForce(inputMovemnt);
+            }
         }
         else
         {
@@ -82,7 +93,7 @@ public partial class player : RigidBody3D
             for (int i = 0; i < amountOfBullets; i++)
             {
                 var instance = bulletScene.Instantiate<bullet>();
-                instance.CheckSpredShoot(spreadShoot);
+                instance.CheckSpredShoot(spreadShoot, (i-1));
                 GetTree().Root.AddChild(instance);
                 instance.GlobalPosition = gun.GlobalPosition;
                 instance.GlobalRotation = gun.GlobalRotation;
@@ -94,11 +105,7 @@ public partial class player : RigidBody3D
             double rotation = Mathf.LerpAngle(Rotation.Y, Mathf.Atan2(-direction.X, -direction.Z), delta * rotationSpeed);
             Rotation = new Vector3(0, (float)rotation, 0);
 
-            if (MoveForce != 0)
-            {
-                direction = direction.Normalized() * MoveForce;
-                ApplyImpulse(direction);
-            }
+
         }
 
         // Moving the character
@@ -149,8 +156,12 @@ public partial class player : RigidBody3D
     public void MakeSpreadShot()
     {
         spreadShoot = true;
-        amountOfBullets = 4;
+        amountOfBullets = 3;
 
     }
 
+    public void Hit(int damage)
+    {
+        TakeDamage(damage);
+    }
 }

@@ -1,13 +1,13 @@
 using Godot;
 using System;
 
-public partial class weapon_pickup : Area3D
+public partial class weapon_pickup : Area3D, HitInterface
 {
 	int firerate;
 	int size_of_bullets;
 	CollisionObject2D collisionObject;
 	bool SpreadShoot = true;
-	int amountOfShoots = 4;
+	int amountOfShoots = 3;
 	int health = 15;
 	int amountOfFramesBetweenShots = 40;
 	game_manger gameManger;
@@ -57,4 +57,9 @@ public partial class weapon_pickup : Area3D
 	{
 		QueueFree();
 	}
+
+    public void Hit(int damage)
+    {
+        TakeDamage(damage);
+    }
 }

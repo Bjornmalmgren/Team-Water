@@ -22,8 +22,7 @@ public partial class bullet : Node3D
 		ray = GetNode<RayCast3D>("RayCast3D");
 		gameManger = GetTree().Root.GetNode<game_manger>("Game Manger");
 		area = GetNode<Area3D>("Area3D");
-        var rng = new RandomNumberGenerator();
-        range = rng.RandfRange(-1.0f, 1.0f);
+
     }
 	public override void _Process(double delta)
 	{
@@ -59,9 +58,10 @@ public partial class bullet : Node3D
 		gameManger._on_area_3d_area_entered(collisionObject, damage);
 
     }
-	public void CheckSpredShoot(bool spred)
+	public void CheckSpredShoot(bool spred, int range)
 	{
 		spreadShoot = spred;
+		this.range = range;
 	}
 
 }

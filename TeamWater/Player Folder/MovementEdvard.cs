@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Movement : RigidBody3D
+public partial class MovementEdvard : RigidBody3D
 {
     private const float MoveForce = 30f;
 
@@ -14,15 +14,15 @@ public partial class Movement : RigidBody3D
     {
         Vector3 inputMovement = Vector3.Zero;
         
-        if (Input.IsActionPressed("MoveForward"))
+        if (Input.GetJoyAxis(1, JoyAxis.TriggerRight) > 0.3f)
         {
             inputMovement -= GlobalTransform.Basis.Z;
             if (inputMovement.LengthSquared() > 0)
-                inputMovement = inputMovement.Normalized() * MoveForce/50;
+                inputMovement = inputMovement.Normalized() * MoveForce/75;
                 ApplyImpulse(inputMovement);
         }
 
-        if (Input.IsActionPressed("MoveBack"))
+        if (Input.GetJoyAxis(1, JoyAxis.TriggerLeft) > 0.3f)
         {
             inputMovement += GlobalTransform.Basis.Z;
             if (inputMovement.LengthSquared() > 0)
@@ -30,14 +30,14 @@ public partial class Movement : RigidBody3D
                 ApplyForce(inputMovement);
         }
 
-        if (Input.IsActionPressed("MoveLeft"))
+        if (Input.GetJoyAxis(1, JoyAxis.LeftX) < -0.3f)
         {
             inputMovement -= GlobalTransform.Basis.X;
             if (inputMovement.LengthSquared() > 0)
                 ApplyTorqueImpulse(new Vector3(0,0.3f,0));
         }
 
-        if (Input.IsActionPressed("MoveRight"))
+        if (Input.GetJoyAxis(1, JoyAxis.LeftX) > 0.3)
         {
             inputMovement += GlobalTransform.Basis.X;
             if (inputMovement.LengthSquared() > 0)

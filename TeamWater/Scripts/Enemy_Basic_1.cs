@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Enemy_Basic_1 : RigidBody3D
+public partial class Enemy_Basic_1 : RigidBody3D, HitInterface
 {   
     private int health = 15;
     public int amountOfBullets = 1;
@@ -94,5 +94,10 @@ public partial class Enemy_Basic_1 : RigidBody3D
     {
         health = health - damage;
         heal.SetHealth(health);
+    }
+
+    public void Hit(int damage)
+    {
+        TakeDamage(damage);
     }
 }

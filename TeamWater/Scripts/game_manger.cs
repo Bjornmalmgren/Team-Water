@@ -122,27 +122,18 @@ public partial class game_manger : Node3D
             player4.SetId(id4);
             player4Spawned = true;
         }
+        if (Input.IsKeyPressed(Key.F1))
+        {
+            GetTree().ReloadCurrentScene();
+        }
     }
 
     public void _on_area_3d_area_entered(Node collidingObject, int damage)
     {
 
-        var type = collidingObject.GetType();
-        //same code struture for everything that should be hit like enemies and other pickups
-        if(type == player1.GetType())
+        if(collidingObject as HitInterface != null)
         {
-            player objectHit = (player)collidingObject;
-            objectHit.TakeDamage(damage);
-        }
-        if (type == pickup.GetType())
-        {
-            weapon_pickup objectHit = (weapon_pickup)collidingObject;
-            objectHit.TakeDamage(damage);
-        }
-        if (type == enemy.GetType())
-        {
-            Enemy_Basic_1 objectHit = (Enemy_Basic_1)collidingObject;
-            objectHit.TakeDamage(damage);
+            (collidingObject as HitInterface).Hit(damage);
         }
     }
 

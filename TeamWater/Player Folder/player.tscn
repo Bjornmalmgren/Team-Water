@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://e1jxiqcex2k0"]
 
-[ext_resource type="Script" path="res://Player Folder/Movement.cs" id="1_8pw80"]
-[ext_resource type="PackedScene" uid="uid://dcbhi8bbolop0" path="res://Models/kenney_space-kit/Models/GLTF format/craft_speederA.glb" id="2_2e0o6"]
+[ext_resource type="Script" path="res://Player Folder/MovementEdvard.cs" id="1_8pw80"]
+[ext_resource type="PackedScene" uid="uid://c1anbnf56h7be" path="res://Models/kenney_space-kit/Models/GLTF format/craft_speederA.glb" id="2_2e0o6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y2cgy"]
 radius = 0.396463
