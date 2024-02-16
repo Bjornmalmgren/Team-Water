@@ -1,0 +1,164 @@
+[gd_scene load_steps=25 format=3 uid="uid://dmvdxi2y3nx75"]
+
+[ext_resource type="Script" path="res://Scripts/game_manger.cs" id="1_f6bpy"]
+[ext_resource type="PackedScene" uid="uid://cuamxond7dceh" path="res://RockRound.tscn" id="1_fahg1"]
+[ext_resource type="PackedScene" uid="uid://dpo3jmqwtntkn" path="res://RockPoint.tscn" id="2_wm3yy"]
+[ext_resource type="PackedScene" uid="uid://bc11ulb8i1rva" path="res://Scenes/weapon_pickup.tscn" id="3_o2qlu"]
+[ext_resource type="PackedScene" uid="uid://kghjhcjsredw" path="res://Scenes/player.tscn" id="3_pjhvk"]
+[ext_resource type="PackedScene" uid="uid://cdf3k282i1m5k" path="res://Scenes/enemy_basic_1.tscn" id="4_jg5mn"]
+[ext_resource type="Texture2D" uid="uid://bcwqu31ln7gar" path="res://Textures/arid_ground_textures__pansapiens/red_earth_02_2048x2048.png" id="5_hhit2"]
+[ext_resource type="PackedScene" uid="uid://5432fty4aepe" path="res://Models/ultimate_space_kit-glb/Rover.glb" id="8_iqhal"]
+[ext_resource type="PackedScene" uid="uid://brk80k4ngravl" path="res://Models/ultimate_space_kit-glb/Rover-WRd1piJOfh.glb" id="9_wnhjy"]
+[ext_resource type="PackedScene" uid="uid://hb0qc7f1afih" path="res://Models/ultimate_space_kit-glb/Base Large.glb" id="10_3s4bc"]
+[ext_resource type="PackedScene" uid="uid://xe4jvnr0q2j4" path="res://Models/ultimate_space_kit-glb/Building L.glb" id="11_6q56h"]
+[ext_resource type="PackedScene" uid="uid://bxr20ib2ls1if" path="res://Models/kenney_space-kit/Models/GLTF format/bones.glb" id="12_tv11e"]
+[ext_resource type="PackedScene" uid="uid://b114n0huoh7j2" path="res://Models/kenney_space-kit/Models/GLTF format/barrels_rail.glb" id="13_4obco"]
+[ext_resource type="PackedScene" uid="uid://cvkcdt1toiuyd" path="res://Models/kenney_space-kit/Models/GLTF format/craft_cargoA.glb" id="14_eacw3"]
+[ext_resource type="PackedScene" uid="uid://didq8rpa0u145" path="res://Models/kenney_space-kit/Models/GLTF format/craterLarge.glb" id="15_ig365"]
+[ext_resource type="PackedScene" uid="uid://df6weebynr41p" path="res://Models/kenney_space-kit/Models/GLTF format/hangar_largeA.glb" id="16_0bnwb"]
+[ext_resource type="PackedScene" uid="uid://qyvtj1gp7ype" path="res://Models/kenney_space-kit/Models/GLTF format/machine_wirelessCable.glb" id="17_qxgj3"]
+[ext_resource type="PackedScene" uid="uid://b2c3f1a26jjmu" path="res://Models/kenney_space-kit/Models/GLTF format/satelliteDish_large.glb" id="18_iye7q"]
+[ext_resource type="PackedScene" uid="uid://dwgdsgv3oinou" path="res://Models/kenney_space-kit/Models/GLTF format/rock_crystals.glb" id="19_s12m2"]
+[ext_resource type="PackedScene" uid="uid://c1uwt5w3qkj34" path="res://Models/ultimate_space_kit-glb/Tree Blob.glb" id="20_gdfii"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dr3hw"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4jww"]
+albedo_color = Color(1, 1, 0, 1)
+albedo_texture = ExtResource("5_hhit2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4pkb"]
+albedo_color = Color(0.964706, 0.443137, 0.235294, 0.937255)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vtv6f"]
+material = SubResource("StandardMaterial3D_h4pkb")
+size = Vector3(100, 1, 100)
+
+[node name="Game Manger" type="GridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.47184, -2.771, -0.858753)
+data = {
+"cells": PackedInt32Array(65536, 0, 0)
+}
+script = ExtResource("1_f6bpy")
+playerScene = ExtResource("3_pjhvk")
+weaponPickupScene = ExtResource("3_o2qlu")
+enemyScene = ExtResource("4_jg5mn")
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_dr3hw")
+
+[node name="GroundMesh" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+material_overlay = SubResource("StandardMaterial3D_e4jww")
+transparency = 0.05
+mesh = SubResource("BoxMesh_vtv6f")
+
+[node name="RockRound3" parent="." instance=ExtResource("1_fahg1")]
+transform = Transform3D(15.2324, 0, 0, 0, 3.55249, 0.0406808, 0, -0.0871932, 1.65745, -2.84131, -0.293062, 47.6522)
+
+[node name="RockRound4" parent="." instance=ExtResource("1_fahg1")]
+transform = Transform3D(15.2324, 0, 0, 0, 3.55249, 0.0406808, 0, -0.0871932, 1.65745, -2.84131, -0.293062, -48.094)
+
+[node name="RockRound5" parent="." instance=ExtResource("1_fahg1")]
+transform = Transform3D(0.0555639, 0.0871926, -1.65744, 1.69113e-15, 3.55249, 0.0406808, 15.2323, -0.000318066, 0.00604597, 47.4445, -0.293062, 4.50772)
+
+[node name="RockRound6" parent="." instance=ExtResource("1_fahg1")]
+transform = Transform3D(0.0555639, 0.0871926, -1.65744, 1.69113e-15, 3.55249, 0.0406808, 15.2323, -0.000318066, 0.00604597, -49.3763, -0.293062, 4.50772)
+
+[node name="RockPoint" parent="." instance=ExtResource("2_wm3yy")]
+transform = Transform3D(3.77753, 0.442328, 0.951897, 0, 3.09513, -0.424292, 2.59506, -0.643881, -1.38564, -39.846, 0.5, 48.4815)
+
+[node name="RockPoint2" parent="." instance=ExtResource("2_wm3yy")]
+transform = Transform3D(4.04408, -0.367534, -0.79094, 0, 3.09513, -0.424292, -2.15626, -0.689315, -1.48342, 43.7064, 0.5, 42.6161)
+
+[node name="RockPoint3" parent="." instance=ExtResource("2_wm3yy")]
+transform = Transform3D(3.21313, 0.557031, 1.19874, 0, 3.09513, -0.424292, 3.268, -0.54768, -1.17861, 47.9602, 0.5, -45.3862)
+
+[node name="RockPoint4" parent="." instance=ExtResource("2_wm3yy")]
+transform = Transform3D(-3.42745, -0.230464, 1.14418, 0.0472951, 3.16883, 0.208571, 3.0421, -0.308922, 1.28588, -46.0913, 0.5, -41.1198)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.615675, -0.117847, 0.779138, -0.788, -0.0920758, 0.608751, 0, -0.988754, -0.149553, 98.5519, 23.8796, 5.73239)
+light_color = Color(0.996078, 1, 0.945098, 1)
+light_energy = 1.917
+shadow_enabled = true
+sky_mode = 1
+
+[node name="Node3D2" parent="." instance=ExtResource("1_fahg1")]
+transform = Transform3D(1, 0, 0, 0, 0.16315, 0, 0, 0, 0.615931, 23.3099, 0.5, 18.9188)
+
+[node name="Node3D3" parent="." instance=ExtResource("1_fahg1")]
+transform = Transform3D(0.35697, 0, 0, 0, 0.282377, 0, 0, 0, 0.426565, -24.3818, 0.5, -10.0534)
+
+[node name="Node3D4" parent="." instance=ExtResource("1_fahg1")]
+transform = Transform3D(0.35697, 0, 0, 0, 0.282377, 0, 0, 0, 0.426565, -11.2147, 0.5, 3.66726)
+
+[node name="Root Scene" parent="." instance=ExtResource("8_iqhal")]
+transform = Transform3D(0.542955, -0.839762, 0, 0.839762, 0.542955, 0, 0, 0, 1, -0.46944, -1.24, 15.6905)
+
+[node name="Root Scene2" parent="." instance=ExtResource("9_wnhjy")]
+transform = Transform3D(0.506831, 0.861771, 0.0217535, -0.862045, 0.50667, 0.0127898, 0, -0.0252348, 0.999682, -0.960214, -6.77553, 23.7667)
+
+[node name="Root Scene3" parent="." instance=ExtResource("10_3s4bc")]
+transform = Transform3D(0.908158, -0.418628, 0, 0.418628, 0.908158, 0, 0, 0, 1, -19.2078, -2.44032, 26.3789)
+
+[node name="Root Scene4" parent="." instance=ExtResource("11_6q56h")]
+transform = Transform3D(0.962899, -0.269861, 0, 0.255935, 0.913209, 0.317089, -0.0855701, -0.305325, 0.948396, -18.7359, -2.10781, 9.96505)
+
+[node name="bones2" parent="." instance=ExtResource("12_tv11e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8778, 0.5, 5.38484)
+
+[node name="bones3" parent="." instance=ExtResource("12_tv11e")]
+transform = Transform3D(8.36356, 0, 0, 0, 2.28237, 0, 0, 0, 5.16044, -7.35124, -0.0877638, 11.3901)
+
+[node name="bones4" parent="." instance=ExtResource("12_tv11e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0258, 0.5, 22.8922)
+
+[node name="barrels_rail2" parent="." instance=ExtResource("13_4obco")]
+transform = Transform3D(3.6789, 0, 0, 0, 2.84386, 0, 0, 0, 3.91656, -25.8629, 0.128592, 6.65484)
+
+[node name="craft_cargoA2" parent="." instance=ExtResource("14_eacw3")]
+transform = Transform3D(3.86978, -0.991412, -0.204734, 1.01233, 3.78981, 0.782625, 0, -0.808961, 3.91734, 21.7419, -5.21135, -31.8389)
+
+[node name="craterLarge2" parent="." instance=ExtResource("15_ig365")]
+transform = Transform3D(7.47726, 0, 0, 0, 1, 0, 0, 0, 24.5292, 14.5229, 0.151245, -63.1091)
+
+[node name="hangar_largeA2" parent="." instance=ExtResource("16_0bnwb")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 20.3736, 0.5, 37.5077)
+
+[node name="machine_wirelessCable2" parent="." instance=ExtResource("17_qxgj3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2045, 0.5, 6.27507)
+
+[node name="machine_wirelessCable3" parent="." instance=ExtResource("17_qxgj3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.6718, 0.5, 7.05358)
+
+[node name="satelliteDish_large2" parent="." instance=ExtResource("18_iye7q")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -21.1808, -0.139478, 4.36819)
+
+[node name="rock_crystals2" parent="." instance=ExtResource("19_s12m2")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -4.15893, 0.249253, -26.5507)
+
+[node name="rock_crystals3" parent="." instance=ExtResource("19_s12m2")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.59067, 0.249253, -30.1542)
+
+[node name="rock_crystals4" parent="." instance=ExtResource("19_s12m2")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.814657, 0.249253, -26.0213)
+
+[node name="Root Scene5" parent="." instance=ExtResource("20_gdfii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.6889, 0.5, -15.7834)
+
+[node name="Root Scene6" parent="." instance=ExtResource("20_gdfii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5291, 0.5, 33.4584)
+
+[node name="Root Scene7" parent="." instance=ExtResource("20_gdfii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.001, 0.5, 35.2187)
+
+[node name="Root Scene8" parent="." instance=ExtResource("20_gdfii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.1346, 0.5, -30.0044)
+
+[node name="Root Scene9" parent="." instance=ExtResource("20_gdfii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2178, 0.5, 29.093)
