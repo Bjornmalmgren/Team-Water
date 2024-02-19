@@ -17,12 +17,16 @@ public partial class Enemy_Basic_1 : RigidBody3D, HitInterface
     HealthBar heal;
     player player1;
     game_manger gameManger;
+    PlayerManager playerManager;
+    InputManger inputManger;
     [Export]
     public PackedScene enemy_bulletScene { get; set; }
 
     public override void _Ready()
 	{
         gameManger = GetTree().Root.GetNode<game_manger>("Game Manger");
+        playerManager = GetParent<Node3D>().GetNode<PlayerManager>("PlayerManager");
+        inputManger = GetParent<Node3D>().GetNode<InputManger>("InputManager");
         Gun = GetNode<Node3D>("Pivot/Gun");
         gun = GetNode<RayCast3D>("Pivot/Gun/RayCast3D");
         Healthbar = GetNode<ProgressBar>("SubViewport/HealthBar");
@@ -34,12 +38,13 @@ public partial class Enemy_Basic_1 : RigidBody3D, HitInterface
 
 	public override void _Process(double delta)
 	{
-        bool[] isSpawned = gameManger.GetPlayerSpawned();
+        bool[] isSpawned = inputManger.GetPlayerSpawned();
 
         if (isSpawned[0] && isSpawned[1])
         {
-            GD.Print("test");
-            target = gameManger.CheckClosestPlayer(GlobalPosition);
+            
+            target = playerManager.CheckClosestPlayer(GlobalPosition);
+            //GD.Print(target);
             //target = gameManger.playerPos();
             //LookAt(target,Vector3.Up);
 
@@ -73,6 +78,7 @@ public partial class Enemy_Basic_1 : RigidBody3D, HitInterface
         {
 
             var instance = enemy_bulletScene.Instantiate<enemy_bullet>();
+            instance.Position = new Vector3(instance.Position.X, 0, instance.Position.Z);
             instance.CheckSpredShoot(spreadShoot);
             GetTree().Root.AddChild(instance);
             instance.Position = gun.Position;

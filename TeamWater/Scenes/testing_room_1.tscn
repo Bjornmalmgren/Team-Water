@@ -27,6 +27,7 @@ size = Vector3(50, 1, 50)
 [node name="TestingRoom1" type="Node3D"]
 
 [node name="Ground" type="StaticBody3D" parent="."]
+collision_layer = 0
 
 [node name="GroundBox" type="CollisionShape3D" parent="Ground"]
 transform = Transform3D(1.00146, 0, 0, 0, 1.00146, 0, 0, 0, 1.00146, 0, -1, 0)

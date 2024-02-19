@@ -27,7 +27,6 @@ public partial class enemy_bullet : Node3D
     }
     public override void _Process(double delta)
     {
-        
         //Scale = new Godot.Vector3(0.7f, 0.7f, 0.7f);
 
         if (spreadShoot == false)
@@ -56,11 +55,13 @@ public partial class enemy_bullet : Node3D
 
     public void Collision(Node objects)
     {
+        
+        gameManger._on_area_3d_area_entered(objects, damage);
     }
 
     public void CollisionDetectedEnemyBullet(Node collisionObject)
     {
-        gameManger._on_area_3d_area_entered(collisionObject, damage);
+
     }
     public void CheckSpredShoot(bool spred)
     {

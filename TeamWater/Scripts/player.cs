@@ -14,13 +14,13 @@ public partial class player : RigidBody3D, HitInterface
     public float gravity { get; set; } = 9.8f;
     public bool isSpawned = false;
     [Export]
-    public int Speed { get; set; } = 14;
+    public int Speed { get; set; } = 12;
 
     private Vector3 _targetVelocity = Vector3.Zero;
 
     private int health = 15;
     private float MoveForce = 0;
-    float rotationSpeed = 2f;
+    float rotationSpeed = 2.2f;
     Node3D Gun;
     RayCast3D gun;
     Node3D TargetPoint;
@@ -162,6 +162,7 @@ public partial class player : RigidBody3D, HitInterface
 
     public void Hit(int damage)
     {
+        GD.Print("damage");
         TakeDamage(damage);
     }
 }

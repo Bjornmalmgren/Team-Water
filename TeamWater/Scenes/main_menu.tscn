@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyyvym2lb730b"]
+[gd_scene load_steps=8 format=3 uid="uid://dyyvym2lb730b"]
 
 [ext_resource type="Script" path="res://Scripts/game_manger.cs" id="1_27vi6"]
 [ext_resource type="PackedScene" uid="uid://bc11ulb8i1rva" path="res://Scenes/weapon_pickup.tscn" id="2_pqicl"]
 [ext_resource type="PackedScene" uid="uid://clb00im706gy5" path="res://Scenes/testing_room_1.tscn" id="4_q1cga"]
 [ext_resource type="PackedScene" uid="uid://cdf3k282i1m5k" path="res://Scenes/enemy_basic_1.tscn" id="5_jresv"]
+[ext_resource type="Script" path="res://Scenes/PlayerManager.cs" id="6_000po"]
 [ext_resource type="PackedScene" uid="uid://kghjhcjsredw" path="res://Scenes/player.tscn" id="6_bicly"]
+[ext_resource type="Script" path="res://Scripts/InputManger.cs" id="7_f62yl"]
 
 [node name="Game Manger" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.7892, 0)
@@ -21,3 +23,11 @@ transform = Transform3D(-0.0349053, -0.00162243, -0.999389, 0.00349065, 0.999992
 
 [node name="Enemy_Basic_3" parent="." instance=ExtResource("5_jresv")]
 transform = Transform3D(-0.0349053, -0.00162243, -0.999389, 0.00349065, 0.999992, -0.00174533, 0.999384, -0.00354944, -0.0348994, -9.3017, 0, -5.68252)
+
+[node name="PlayerManager" type="Node3D" parent="."]
+script = ExtResource("6_000po")
+playerScene = ExtResource("6_bicly")
+
+[node name="InputManager" type="Node3D" parent="."]
+script = ExtResource("7_f62yl")
+playerScene = ExtResource("6_bicly")

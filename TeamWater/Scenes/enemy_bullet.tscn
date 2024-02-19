@@ -12,7 +12,7 @@ emission_energy_multiplier = 2.29
 material = SubResource("StandardMaterial3D_mqr3f")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3j6o2"]
-height = 1.4305
+height = 8.01451
 
 [node name="EnemyBullet" type="Node3D"]
 transform = Transform3D(0.999218, 0, 0, 0, 0.999218, 0, 0, 0, 0.999218, 0, 0, 0)
@@ -32,5 +32,5 @@ collision_mask = 5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CapsuleShape3D_3j6o2")
 
-[connection signal="area_entered" from="Area3D" to="." method="CollisionDetectedEnemyBullet"]
-[connection signal="body_entered" from="Area3D" to="." method="CollisionDetectedEnemyBullet"]
+[connection signal="area_entered" from="Area3D" to="." method="Collision"]
+[connection signal="body_entered" from="Area3D" to="." method="Collision"]

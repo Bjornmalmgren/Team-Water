@@ -11,12 +11,15 @@ public partial class weapon_pickup : Area3D, HitInterface
 	int health = 15;
 	int amountOfFramesBetweenShots = 40;
 	game_manger gameManger;
+	PlayerManager playerManager;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
         gameManger = GetTree().Root.GetNode<game_manger>("Game Manger");
+        playerManager = GetParent<Node3D>().GetNode<PlayerManager>("PlayerManager");
     }
+
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -37,9 +40,9 @@ public partial class weapon_pickup : Area3D, HitInterface
 		return SpreadShoot;
 	}
 
-	public void CallGameManger(player body)
+	public void CallInputManager(player body)
 	{
-		gameManger._on_pickup_area_entered(body);
+        playerManager._on_pickup_area_entered(body, this);
 		Die();
 	}
 
