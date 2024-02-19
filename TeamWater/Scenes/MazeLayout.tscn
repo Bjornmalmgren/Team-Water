@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://7v58glf2l126"]
 
-[ext_resource type="MeshLibrary" path="res://Models/mazeParts.tres" id="1_6rks4"]
+[ext_resource type="MeshLibrary" uid="uid://by2sld2mlsrv8" path="res://Textures/maze.tres" id="1_6rks4"]
 [ext_resource type="PackedScene" uid="uid://kghjhcjsredw" path="res://Scenes/player.tscn" id="2_svb6u"]
 [ext_resource type="Script" path="res://Scenes/Camera.cs" id="3_ioumw"]
 [ext_resource type="PackedScene" uid="uid://e1jxiqcex2k0" path="res://Player Folder/player.tscn" id="4_fkl3c"]
