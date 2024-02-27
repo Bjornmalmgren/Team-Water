@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cpj4ua260pyme"
+path="res://.godot/imported/hangar_smallA.obj-ced20bd9aa08d28d47322c26fd05a080.mesh"
+
+[deps]
+
+files=["res://.godot/imported/hangar_smallA.obj-ced20bd9aa08d28d47322c26fd05a080.mesh"]
+
+source_file="res://Models/kenney_space-kit/Models/OBJ format/hangar_smallA.obj"
+dest_files=["res://.godot/imported/hangar_smallA.obj-ced20bd9aa08d28d47322c26fd05a080.mesh", "res://.godot/imported/hangar_smallA.obj-ced20bd9aa08d28d47322c26fd05a080.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

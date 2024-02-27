@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cajhby1qdr05m"
+path="res://.godot/imported/weapon_rifle.obj-960c93aa55d81d652d32764df72ffc1c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/weapon_rifle.obj-960c93aa55d81d652d32764df72ffc1c.mesh"]
+
+source_file="res://Models/kenney_space-kit/Models/OBJ format/weapon_rifle.obj"
+dest_files=["res://.godot/imported/weapon_rifle.obj-960c93aa55d81d652d32764df72ffc1c.mesh", "res://.godot/imported/weapon_rifle.obj-960c93aa55d81d652d32764df72ffc1c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

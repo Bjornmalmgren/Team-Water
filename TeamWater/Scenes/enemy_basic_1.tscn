@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdf3k282i1m5k"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy_Basic_1.cs" id="1_gg527"]
+[ext_resource type="PackedScene" uid="uid://j11w1wme71yy" path="res://Scenes/Gun.tscn" id="2_70xnj"]
+[ext_resource type="PackedScene" uid="uid://dnx7siv6gkua7" path="res://Scenes/enemy_bullet.tscn" id="2_y7pwp"]
+[ext_resource type="PackedScene" uid="uid://pfphaie5w83v" path="res://Scenes/health_bar.tscn" id="4_0wxr6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2v0ha"]
+radius = 0.914584
+
+[sub_resource type="BoxMesh" id="BoxMesh_ef71n"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6w352"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1ix8"]
+albedo_color = Color(0.105882, 1, 0.176471, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8tdxw"]
+material = SubResource("StandardMaterial3D_r1ix8")
+
+[node name="Enemy_Basic_1" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40333, 0)
+collision_layer = 2
+collision_mask = 11
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_gg527")
+enemy_bulletScene = ExtResource("2_y7pwp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453618, 0)
+shape = SubResource("SphereShape3D_2v0ha")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458956, 0)
+mesh = SubResource("BoxMesh_ef71n")
+
+[node name="Gun" parent="Pivot" instance=ExtResource("2_70xnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.272504, -0.068563)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.484
+autostart = true
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.00136133, 0.999999, 0, -0.999999, 0.00136133, 0, 2.14936, -1.832)
+texture = SubResource("ViewportTexture_6w352")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1000, 512)
+
+[node name="HealthBar" parent="SubViewport" instance=ExtResource("4_0wxr6")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -5.0
+offset_right = 100.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+Health = 15
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.25023, 0, 0, 0, 1.26989, 0, 0, 0, 1.23517, 0, 0.438979, 0)
+mesh = SubResource("BoxMesh_8tdxw")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://djprnjd3f44vc"
+path="res://.godot/imported/rover.obj-0d909f222bf6a0e2d0edf0dd8caf46aa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/rover.obj-0d909f222bf6a0e2d0edf0dd8caf46aa.mesh"]
+
+source_file="res://Models/kenney_space-kit/Models/OBJ format/rover.obj"
+dest_files=["res://.godot/imported/rover.obj-0d909f222bf6a0e2d0edf0dd8caf46aa.mesh", "res://.godot/imported/rover.obj-0d909f222bf6a0e2d0edf0dd8caf46aa.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnkcdapxnnr7j"]
+
+[ext_resource type="PackedScene" uid="uid://cdf3k282i1m5k" path="res://Scenes/enemy_basic_1.tscn" id="1_otufa"]
+[ext_resource type="PackedScene" uid="uid://csouhof7vb3wb" path="res://Models/Spaceship-u105mYHLHU.glb" id="2_fxyoh"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1te1c"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Enemy_Basic_1" parent="." instance=ExtResource("1_otufa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4071, 1.19209e-07, 1.72604)
+
+[node name="Root Scene" parent="Enemy_Basic_1/Pivot" index="2" instance=ExtResource("2_fxyoh")]
+
+[node name="Sprite3D" parent="Enemy_Basic_1" index="3"]
+texture = SubResource("ViewportTexture_1te1c")
+
+[editable path="Enemy_Basic_1"]

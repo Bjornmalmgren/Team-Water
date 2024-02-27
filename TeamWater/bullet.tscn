@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://gh11htov06ys"]
+[gd_scene load_steps=5 format=3 uid="uid://p0xqj6f6uoiy"]
 
 [ext_resource type="Script" path="res://bullet.cs" id="1_bn8so"]
 
@@ -12,6 +12,10 @@ emission_energy_multiplier = 1.94
 material = SubResource("StandardMaterial3D_fy4ca")
 radius = 1.162
 height = 1.662
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bi2xs"]
+radius = 1.28555
+height = 31.243
 
 [node name="Bullet" type="Node3D"]
 transform = Transform3D(0.999218, 0, 0, 0, 0.999218, 0, 0, 0, 0.999218, 0, 0, 0)
@@ -29,4 +33,13 @@ wait_time = 0.247
 one_shot = true
 autostart = true
 
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_bi2xs")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area3D" to="." method="CollisionDetected"]
+[connection signal="body_entered" from="Area3D" to="." method="CollisionDetected"]

@@ -1,0 +1,146 @@
+[gd_scene load_steps=13 format=3 uid="uid://clb00im706gy5"]
+
+[ext_resource type="Texture2D" uid="uid://bcwqu31ln7gar" path="res://Textures/arid_ground_textures__pansapiens/red_earth_02_2048x2048.png" id="1_0swdn"]
+[ext_resource type="PackedScene" uid="uid://bxr20ib2ls1if" path="res://Models/kenney_space-kit/Models/GLTF format/bones.glb" id="1_as6b8"]
+[ext_resource type="PackedScene" uid="uid://dpfd51us3y4c1" path="res://Models/kenney_space-kit/Models/GLTF format/craft_speederC.glb" id="2_juamj"]
+[ext_resource type="PackedScene" uid="uid://dkkatx8hm8jsl" path="res://Models/kenney_space-kit/Models/GLTF format/meteor_detailed.glb" id="3_6j2ff"]
+[ext_resource type="PackedScene" uid="uid://dwbl3h34coder" path="res://Models/kenney_space-kit/Models/GLTF format/crater.glb" id="4_la1ev"]
+[ext_resource type="PackedScene" uid="uid://didq8rpa0u145" path="res://Models/kenney_space-kit/Models/GLTF format/craterLarge.glb" id="5_5haqh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iiw23"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7w8pf"]
+albedo_texture = ExtResource("1_0swdn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxn71"]
+albedo_color = Color(0.964706, 0.443137, 0.235294, 0.937255)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ej1cp"]
+material = SubResource("StandardMaterial3D_oxn71")
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3h6ro"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xgl3p"]
+
+[node name="TestingRoom1" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+collision_layer = 0
+
+[node name="GroundBox" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1.00146, 0, 0, 0, 1.00146, 0, 0, 0, 1.00146, 0, -1, 0)
+shape = SubResource("BoxShape3D_iiw23")
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+material_overlay = SubResource("StandardMaterial3D_7w8pf")
+transparency = 0.05
+mesh = SubResource("BoxMesh_ej1cp")
+
+[node name="TestBox" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.72758)
+shape = SubResource("BoxShape3D_3h6ro")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/TestBox"]
+mesh = SubResource("BoxMesh_xgl3p")
+
+[node name="TestBox2" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9942, 0.0183802, 10.9722)
+shape = SubResource("BoxShape3D_3h6ro")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/TestBox2"]
+mesh = SubResource("BoxMesh_xgl3p")
+
+[node name="TestBox3" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1958, 0.0183802, -8.42611)
+shape = SubResource("BoxShape3D_3h6ro")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/TestBox3"]
+mesh = SubResource("BoxMesh_xgl3p")
+
+[node name="TestBox4" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.1796, 0.0183802, -8.27928)
+shape = SubResource("BoxShape3D_3h6ro")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/TestBox4"]
+mesh = SubResource("BoxMesh_xgl3p")
+
+[node name="TestBox5" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.1426, 0.0183802, 10.8263)
+shape = SubResource("BoxShape3D_3h6ro")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/TestBox5"]
+mesh = SubResource("BoxMesh_xgl3p")
+
+[node name="bones2" parent="Ground" instance=ExtResource("1_as6b8")]
+transform = Transform3D(1, 0, 0, 0, 0.887711, 0.460401, 0, -0.460401, 0.887711, 9.36998, 0, 4.83296)
+
+[node name="craft_speederC2" parent="Ground" instance=ExtResource("2_juamj")]
+transform = Transform3D(0.644743, 0.684288, -0.34067, -0.239741, 0.604205, 0.759909, 0.725831, -0.408273, 0.553609, -12.1481, -1.74485, 6.7327)
+
+[node name="meteor_detailed2" parent="Ground" instance=ExtResource("3_6j2ff")]
+transform = Transform3D(1, 0, 0, 0, 0.913439, 0.406976, 0, -0.406976, 0.913439, 7.05715, -1.73888, -6.74552)
+
+[node name="meteor_detailed5" parent="Ground" instance=ExtResource("3_6j2ff")]
+transform = Transform3D(1, 0, 0, 0, 0.913439, 0.406976, 0, -0.406976, 0.913439, -13.0195, -1.73888, 6.53672)
+
+[node name="meteor_detailed6" parent="Ground" instance=ExtResource("3_6j2ff")]
+transform = Transform3D(1, 0, 0, 0, 0.913439, 0.406976, 0, -0.406976, 0.913439, -11.8828, -1.73888, 7.52303)
+
+[node name="meteor_detailed7" parent="Ground" instance=ExtResource("3_6j2ff")]
+transform = Transform3D(1, 0, 0, 0, 0.913439, 0.406976, 0, -0.406976, 0.913439, -10.7481, -1.73888, 6.2355)
+
+[node name="meteor_detailed3" parent="Ground" instance=ExtResource("3_6j2ff")]
+transform = Transform3D(1, 0, 0, 0, 0.890483, 0.455017, 0, -0.455017, 0.890483, 2.86519, -1.73888, -5.31028)
+
+[node name="meteor_detailed4" parent="Ground" instance=ExtResource("3_6j2ff")]
+transform = Transform3D(0.999474, -0.0288872, -0.0147607, 0.03244, 0.890014, 0.454777, 0, -0.455017, 0.890483, 0.0967522, -1.73888, -6.53928)
+
+[node name="crater2" parent="Ground" instance=ExtResource("4_la1ev")]
+transform = Transform3D(1, 0, 0, 0, 0.936941, 0.349488, 0, -0.349488, 0.936941, 8.979, -0.914578, 1.37699)
+
+[node name="crater3" parent="Ground" instance=ExtResource("4_la1ev")]
+transform = Transform3D(1, 0, 0, 0, 0.936941, 0.349488, 0, -0.349488, 0.936941, -11.2536, -0.914578, -4.03861)
+
+[node name="crater4" parent="Ground" instance=ExtResource("4_la1ev")]
+transform = Transform3D(1, 0, 0, 0, 0.936941, 0.349488, 0, -0.349488, 0.936941, -9.40173, -0.914578, -4.78354)
+
+[node name="crater5" parent="Ground" instance=ExtResource("4_la1ev")]
+transform = Transform3D(1, 0, 0, 0, 0.936941, 0.349488, 0, -0.349488, 0.936941, -12.3358, -0.914578, -9.09212)
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.77185, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.121869, 0.992546, 0, -0.992546, 0.121869, 0, 104.218, 15)
+fov = 9.6
+near = 0.33
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.936422, 0.350877, 0, -0.350877, 0.936422, 0, 11.163, 5.40289)
+light_energy = 1.63
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_bias = 2.629
+shadow_normal_bias = 4.42
+shadow_opacity = 0.85
+shadow_blur = 0.255
+sky_mode = 1
+
+[node name="craterLarge2" parent="." instance=ExtResource("5_5haqh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.71813, -0.499269, 0.619585)
+
+[node name="craterLarge3" parent="." instance=ExtResource("5_5haqh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.69359, -0.499269, -5.5858)
+
+[node name="craterLarge4" parent="." instance=ExtResource("5_5haqh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47433, -0.499269, 7.55808)
+
+[node name="craterLarge5" parent="." instance=ExtResource("5_5haqh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4543, -0.499269, 6.87885)
+
+[node name="craterLarge6" parent="." instance=ExtResource("5_5haqh")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -17.2412, -0.666658, 4.58018)

@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://du2cn780jbrf6"]
+
+[ext_resource type="Script" path="res://Debug/Scripts/Test.cs" id="1_8pdhk"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1o3x3"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qggcd"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ylxes"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0w6m3"]
+radius = 0.148075
+
+[sub_resource type="BoxMesh" id="BoxMesh_je7ep"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_1o3x3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_qggcd")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.881501, 0.472182, 0, -0.472182, 0.881501, 0, 1.19703, 1.66981)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000893354, 0.3647, -0.00192893)
+constant_force = Vector3(1, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = SubResource("SphereMesh_ylxes")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_0w6m3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.24419, 0.969727, 0, -0.969727, -0.24419, -1.50016, 1.02608, 0)
+shadow_enabled = true
+
+[node name="TurretRoot" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.132035, 0.851602)
+rotation_edit_mode = 2
+script = ExtResource("1_8pdhk")
+target = NodePath("../RigidBody3D")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="TurretRoot"]
+transform = Transform3D(0.149865, 0, 0, 0, 0.149865, 0, 0, 0, 0.149865, 0, 0, 0)
+mesh = SubResource("BoxMesh_je7ep")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="TurretRoot/MeshInstance3D2"]
+transform = Transform3D(0.344463, 0, 0, 0, 0.344463, 0, 0, 0, 1.45801, -0.0174246, 0.00532794, 0.958078)
+mesh = SubResource("BoxMesh_je7ep")
+skeleton = NodePath("../../..")

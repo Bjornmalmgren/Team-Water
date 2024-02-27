@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bnwl6vsjn218t"
+path="res://.godot/imported/hangar_roundA.obj-e190c6c3ce821d3175930585e224e543.mesh"
+
+[deps]
+
+files=["res://.godot/imported/hangar_roundA.obj-e190c6c3ce821d3175930585e224e543.mesh"]
+
+source_file="res://Models/kenney_space-kit/Models/OBJ format/hangar_roundA.obj"
+dest_files=["res://.godot/imported/hangar_roundA.obj-e190c6c3ce821d3175930585e224e543.mesh", "res://.godot/imported/hangar_roundA.obj-e190c6c3ce821d3175930585e224e543.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

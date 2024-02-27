@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://lldfrdkhsl8q"
+path="res://.godot/imported/corridor_split.obj-0b06c48001d2356844d14080d2f53fbc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/corridor_split.obj-0b06c48001d2356844d14080d2f53fbc.mesh"]
+
+source_file="res://Models/kenney_space-kit/Models/OBJ format/corridor_split.obj"
+dest_files=["res://.godot/imported/corridor_split.obj-0b06c48001d2356844d14080d2f53fbc.mesh", "res://.godot/imported/corridor_split.obj-0b06c48001d2356844d14080d2f53fbc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

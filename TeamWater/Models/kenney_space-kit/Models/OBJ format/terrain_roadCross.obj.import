@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dejtjsw5gaxy"
+path="res://.godot/imported/terrain_roadCross.obj-66e6e5bcb3d993f97175e158dbfdfe48.mesh"
+
+[deps]
+
+files=["res://.godot/imported/terrain_roadCross.obj-66e6e5bcb3d993f97175e158dbfdfe48.mesh"]
+
+source_file="res://Models/kenney_space-kit/Models/OBJ format/terrain_roadCross.obj"
+dest_files=["res://.godot/imported/terrain_roadCross.obj-66e6e5bcb3d993f97175e158dbfdfe48.mesh", "res://.godot/imported/terrain_roadCross.obj-66e6e5bcb3d993f97175e158dbfdfe48.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuamxond7dceh"]
+
+[ext_resource type="PackedScene" uid="uid://cg07vftmkisty" path="res://Models/ultimate_space_kit-glb/Rock Large.glb" id="1_f6igl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ehfey"]
+size = Vector3(1.10791, 1, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Root Scene" parent="." instance=ExtResource("1_f6igl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00926518, 0, -0.185989)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(5.73104, 0, 0, 0, 5.73104, 0, 0, 0, 5.73104, 0.318484, 0, -0.185989)
+shape = SubResource("BoxShape3D_ehfey")
+
+[editable path="Root Scene"]

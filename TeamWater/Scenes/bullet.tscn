@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm6rugfb5tbbh"]
+
+[ext_resource type="Script" path="res://Scripts/bullet.cs" id="1_gdt8u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fy4ca"]
+albedo_color = Color(0.878431, 0.12549, 0, 1)
+emission_enabled = true
+emission = Color(0.988235, 0.545098, 0.0509804, 1)
+emission_energy_multiplier = 1.94
+
+[sub_resource type="SphereMesh" id="SphereMesh_un32d"]
+material = SubResource("StandardMaterial3D_fy4ca")
+radius = 1.162
+height = 1.662
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_50ej6"]
+radius = 1.14843
+
+[node name="Bullet" type="Node3D"]
+transform = Transform3D(0.999218, 0, 0, 0, 0.999218, 0, 0, 0, 0.999218, 0, 0, 0)
+script = ExtResource("1_gdt8u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_un32d")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.365504)
+target_position = Vector3(0, 0, -1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.247
+one_shot = true
+autostart = true
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_50ej6")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area3D" to="." method="CollisionDetected"]
+[connection signal="body_entered" from="Area3D" to="." method="CollisionDetected"]

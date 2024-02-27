@@ -1,0 +1,110 @@
+[gd_scene load_steps=11 format=3 uid="uid://kghjhcjsredw"]
+
+[ext_resource type="Script" path="res://Scripts/player.cs" id="1_35q6d"]
+[ext_resource type="PackedScene" uid="uid://cxgs5vynhb3hf" path="res://Models/Spaceship.glb" id="2_qtq3m"]
+[ext_resource type="PackedScene" uid="uid://bm6rugfb5tbbh" path="res://Scenes/bullet.tscn" id="2_xipvg"]
+[ext_resource type="PackedScene" uid="uid://j11w1wme71yy" path="res://Scenes/Gun.tscn" id="3_4acwc"]
+[ext_resource type="PackedScene" uid="uid://pfphaie5w83v" path="res://Scenes/health_bar.tscn" id="4_e3boi"]
+
+[sub_resource type="Animation" id="Animation_3xd1t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-5.49269e-07, 0, 6.2829)]
+}
+
+[sub_resource type="Animation" id="Animation_c6swy"]
+resource_name = "shoot"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-5.49269e-07, 0, 6.2829), Vector3(-4.59089e-07, 0, 5.25137), Vector3(-3.59126e-07, 0, 4.10792)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lkgb8"]
+_data = {
+"RESET": SubResource("Animation_3xd1t"),
+"shoot_animate": SubResource("Animation_c6swy")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lcujq"]
+radius = 3.27698
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3e3ej"]
+viewport_path = NodePath("SubViewport")
+
+[node name="RigidBody3D" type="RigidBody3D"]
+transform = Transform3D(0.999962, 0, -0.00872654, 0, 1, 0, 0.00872654, 0, 0.999962, 0, 0, 0)
+collision_mask = 15
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+mass = 0.01
+gravity_scale = 0.0
+linear_damp = 0.5
+angular_damp = 5.0
+script = ExtResource("1_35q6d")
+bulletScene = ExtResource("2_xipvg")
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(-0.25, 0, -3.7749e-08, 0, 0.25, 0, 3.7749e-08, 0, -0.25, 0, 0, 0)
+
+[node name="TurretDouble" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(0.93747, 0, 0.348065, 0, 1, 0, -0.348065, 0, 0.93747, 2.54876, 0.904037, -0.0173731)
+skeleton = NodePath("../..")
+
+[node name="TurretDouble2" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(0.903245, 0, -0.429124, 0, 1, 0, 0.429124, 0, 0.903245, -2.53629, 0.904142, 0.00943184)
+skeleton = NodePath("../..")
+
+[node name="Root Scene" parent="Pivot" instance=ExtResource("2_qtq3m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.411987, 0)
+
+[node name="Gun" parent="Pivot" instance=ExtResource("3_4acwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.49269e-07, 0, 6.2829)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_lkgb8")
+}
+
+[node name="TargetPoint" type="Node3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.94392)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0.424395, 0)
+shape = SubResource("SphereShape3D_lcujq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1000, 100)
+
+[node name="HealthBar" parent="SubViewport" instance=ExtResource("4_e3boi")]
+offset_right = 1200.0
+offset_bottom = 130.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.25, 4.65661e-10, 8.73115e-11, 0, 0.0162376, 0.249472, 0, -0.249472, 0.0162376, 0.057925, 0.524014, 1.40138)
+texture = SubResource("ViewportTexture_3e3ej")
